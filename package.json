@@ -20,6 +20,9 @@
   ],
   "author": "Camilo",
   "license": "MIT",
+  "peerDependencies": {
+    "jest": ">=21"
+  },
   "devDependencies": {
     "@types/jest": "^24.9.1",
     "@types/node": "^6.14.9",
