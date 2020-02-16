@@ -1,0 +1,30 @@
+{
+  "name": "jest-json-matchers",
+  "version": "1.0.0",
+  "description": "Add JSON matchers to Jest",
+  "main": "index.js",
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "!*.config.js"
+  ],
+  "scripts": {
+    "prepack": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "jest",
+    "json",
+    "matcher",
+    "matchers"
+  ],
+  "author": "Camilo",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.9.1",
+    "@types/node": "^6.14.9",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.5"
+  }
+}
