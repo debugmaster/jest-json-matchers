@@ -77,7 +77,8 @@ function findMatchers() {
     const symbols = Object.getOwnPropertySymbols(global)
     for (const symbol of symbols) {
         if (symbol.toString().includes('jest-matchers-object')) {
-            matchers = (global as any)[symbol].matchers
+            // @ts-ignore global is not indexed and index signature can't be symbols
+            matchers = global[symbol].matchers
             return matchers
         }
     }
