@@ -2,8 +2,10 @@
  * Add all JSON methods to Jest matchers
  */
 
-if (!expect) {
-    throw new Error('It should be loaded in Jest')
+type GlobalExpect = NodeJS.Global & { expect: jest.Expect }
+
+if (!(global as GlobalExpect).expect) {
+    throw new Error('jest-json-matchers should be loaded after Jest environment')
 }
 
 expect.extend(require('.'))
