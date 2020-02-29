@@ -1,5 +1,5 @@
-import { MatcherState, SyncExpectationResult } from 'expect/build/types'
-import { toBeJSON, toEqualJSON, toMatchJSON } from '.'
+import { MatcherState } from 'expect/build/types'
+import { toBeJSON, toEqualJSON, toMatchJSON, jsonContaining } from '.'
 
 const mockedState = {
     utils: {
@@ -186,6 +186,28 @@ describe('toMatchJSON()', () => {
     it('should not pass for invalid JSON', () => {
         expect(
             toMatchJSON.call(mockedState, null, {})
+        ).toMatchObject({
+            pass: false
+        })
+    })
+})
+
+describe('jsonContaining()', () => {
+
+    it('should pass', () => {
+        const testObj = { test: false }
+        expect(
+            jsonContaining.call(null, JSON.stringify(testObj), testObj)
+        ).toMatchObject({
+            pass: true
+        })
+    })
+
+    it('should not pass', () => {
+        const testObj = { test: false }
+        const anotherTestObj = { anotherTest: false }
+        expect(
+            jsonContaining.call(null, JSON.stringify(testObj), anotherTestObj)
         ).toMatchObject({
             pass: false
         })

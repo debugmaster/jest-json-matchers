@@ -8,6 +8,9 @@ declare global {
             toEqualJSON(b: any): R;
             toMatchJSON(b: any): R;
         }
+        interface Expect {
+            jsonContaining<E = {}>(b: E): any;
+        }
     }
 }
 
@@ -66,4 +69,8 @@ export function toMatchJSON(this: MatcherState, received: unknown, jsonObject: a
     }
 
     return matchers.toMatchObject.call(this, JSON.parse(received as string), jsonObject)
+}
+
+export function jsonContaining(received: unknown, jsonObject: any): ExpectationResult {
+    return toMatchJSON.call(expect.getState() as MatcherState, received, jsonObject)
 }

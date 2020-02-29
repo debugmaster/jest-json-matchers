@@ -14,3 +14,13 @@ it('should register toMatchJSON()', () => {
     const extendedObj = { ...testObj, extended: true }
     expect(JSON.stringify(extendedObj)).toMatchJSON(testObj)
 })
+
+it('should register jsonContaining()', () => {
+    const testObj = { test: true }
+    const extendedObj = {
+        json: JSON.stringify(testObj)
+    }
+    expect(extendedObj).toEqual({
+        json: expect.jsonContaining(testObj)
+    })
+})
