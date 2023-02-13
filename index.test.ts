@@ -197,7 +197,7 @@ describe('jsonContaining()', () => {
     it('should pass', () => {
         const testObj = { test: false }
         expect(
-            jsonContaining.call(null, JSON.stringify(testObj), testObj)
+            jsonContaining.call(mockedState, JSON.stringify(testObj), testObj)
         ).toMatchObject({
             pass: true
         })
@@ -207,7 +207,7 @@ describe('jsonContaining()', () => {
         const testObj = { test: false }
         const anotherTestObj = { anotherTest: false }
         expect(
-            jsonContaining.call(null, JSON.stringify(testObj), anotherTestObj)
+            jsonContaining.call(mockedState, JSON.stringify(testObj), anotherTestObj)
         ).toMatchObject({
             pass: false
         })
