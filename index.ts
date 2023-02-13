@@ -1,4 +1,5 @@
-import { MatcherState, ExpectationResult, SyncExpectationResult } from 'expect/build/types'
+import type { MatcherContext, ExpectationResult, SyncExpectationResult } from 'expect'
+// @ts-ignore types are missing because matchers are not meant to be exposed
 import matchers from 'expect/build/matchers'
 
 declare global {
@@ -14,7 +15,7 @@ declare global {
     }
 }
 
-export function toBeJSON(this: MatcherState, received: unknown): SyncExpectationResult {
+export function toBeJSON(this: MatcherContext, received: unknown): SyncExpectationResult {
     if (typeof received !== 'string') {
         return {
             pass: false,
@@ -51,7 +52,7 @@ export function toBeJSON(this: MatcherState, received: unknown): SyncExpectation
     }
 }
 
-export function toEqualJSON(this: MatcherState, received: unknown, jsonObject: any): ExpectationResult {
+export function toEqualJSON(this: MatcherContext, received: unknown, jsonObject: any): ExpectationResult {
     var isJSON = toBeJSON.call(this, received)
 
     if (!isJSON.pass) {
@@ -61,7 +62,7 @@ export function toEqualJSON(this: MatcherState, received: unknown, jsonObject: a
     return matchers.toEqual.call(this, JSON.parse(received as string), jsonObject)
 }
 
-export function toMatchJSON(this: MatcherState, received: unknown, jsonObject: any): ExpectationResult {
+export function toMatchJSON(this: MatcherContext, received: unknown, jsonObject: any): ExpectationResult {
     var isJSON = toBeJSON.call(this, received)
 
     if (!isJSON.pass) {
@@ -71,6 +72,6 @@ export function toMatchJSON(this: MatcherState, received: unknown, jsonObject: a
     return matchers.toMatchObject.call(this, JSON.parse(received as string), jsonObject)
 }
 
-export function jsonContaining(this: MatcherState, received: unknown, jsonObject: any): ExpectationResult {
+export function jsonContaining(this: MatcherContext, received: unknown, jsonObject: any): ExpectationResult {
     return toMatchJSON.call(this, received, jsonObject)
 }

@@ -1,12 +1,13 @@
-import { MatcherState } from 'expect/build/types'
+import { MatcherContext } from 'expect'
 import { toBeJSON, toEqualJSON, toMatchJSON, jsonContaining } from '.'
 
 const mockedState = {
     utils: {
         printReceived: JSON.stringify,
         EXPECTED_COLOR: (r: string) => r
-    } as Partial<MatcherState["utils"]> as MatcherState["utils"]
-} as Partial<MatcherState> as MatcherState
+    } as Partial<MatcherContext["utils"]> as MatcherContext["utils"],
+    customTesters: [], // unused yet required since Jest 29.4
+} as Partial<MatcherContext> as MatcherContext
 
 describe('toBeJSON()', () => {
 
