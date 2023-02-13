@@ -71,6 +71,6 @@ export function toMatchJSON(this: MatcherState, received: unknown, jsonObject: a
     return matchers.toMatchObject.call(this, JSON.parse(received as string), jsonObject)
 }
 
-export function jsonContaining(received: unknown, jsonObject: any): ExpectationResult {
-    return toMatchJSON.call(expect.getState() as MatcherState, received, jsonObject)
+export function jsonContaining(this: MatcherState, received: unknown, jsonObject: any): ExpectationResult {
+    return toMatchJSON.call(this, received, jsonObject)
 }
