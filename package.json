@@ -1,6 +1,6 @@
 {
   "name": "jest-json-matchers",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Add JSON matchers to Jest",
   "main": "index.js",
   "files": [
